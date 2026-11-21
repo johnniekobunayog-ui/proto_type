@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tl">
 <head>
@@ -6,21 +7,21 @@
   <title>KASÚMA — Chapter 1: ANG HANDAAN</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <style>
     :root {
       --bg-dark: #07080a;
-      --accent-blood: #9e1b1b;
-      --accent-ember: #e07a22;
-      --accent-gold: #c9a66b;
-      --text-main: #e8e4dc;
-      --text-muted: #9a9488;
-      --hud-glass: rgba(10, 12, 15, 0.74);
-      --hud-border: rgba(201, 166, 107, 0.28);
+      --accent-blood: #b81414;
+      --accent-ember: #e03c22;
+      --accent-gold: #ff2e2e;
+      --text-main: #ffffff;
+      --text-muted: #e6dfd5;
+      --hud-glass: rgba(10, 11, 15, 0.78);
+      --hud-border: rgba(255, 46, 46, 0.45);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -52,7 +53,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 5;
-      background: radial-gradient(circle at center, transparent 48%, rgba(0, 0, 0, 0.85) 100%);
+      background: radial-gradient(circle at center, transparent 48%, rgba(0, 0, 0, 0.82) 100%);
     }
 
     #damage-vignette {
@@ -61,7 +62,7 @@
       pointer-events: none;
       z-index: 6;
       opacity: 0;
-      background: radial-gradient(circle at center, transparent 35%, rgba(145, 12, 12, 0.85) 100%);
+      background: radial-gradient(circle at center, transparent 35%, rgba(165, 12, 12, 0.88) 100%);
       transition: opacity 0.2s ease;
     }
 
@@ -73,7 +74,7 @@
       opacity: 0;
       mix-blend-mode: screen;
       background: radial-gradient(circle at 30% 40%, rgba(120, 20, 140, 0.35), transparent 60%),
-                  radial-gradient(circle at 70% 60%, rgba(160, 15, 15, 0.35), transparent 60%);
+                  radial-gradient(circle at 70% 60%, rgba(180, 15, 15, 0.4), transparent 60%);
       transition: opacity 0.35s ease;
     }
 
@@ -83,7 +84,7 @@
       pointer-events: none;
       z-index: 6;
       opacity: 0;
-      box-shadow: inset 0 0 90px rgba(212, 155, 56, 0.55);
+      box-shadow: inset 0 0 90px rgba(255, 46, 46, 0.65);
       transition: opacity 0.15s ease;
     }
 
@@ -127,7 +128,7 @@
       font-size: 0.8rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: var(--accent-ember);
+      color: var(--accent-gold);
       margin-bottom: 0.5rem;
     }
     #chapter-banner h2 {
@@ -135,7 +136,7 @@
       font-size: clamp(1.7rem, 4.5vw, 3.2rem);
       font-weight: 900;
       letter-spacing: 0.15em;
-      color: #f3efe6;
+      color: #ffffff;
       text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95);
     }
     #chapter-banner .line {
@@ -159,8 +160,8 @@
       top: 20px;
       left: 22px;
       max-width: 350px;
-      background: linear-gradient(90deg, rgba(8, 10, 12, 0.84) 0%, rgba(8, 10, 12, 0.3) 100%);
-      border-left: 3px solid var(--accent-ember);
+      background: linear-gradient(90deg, rgba(10, 10, 14, 0.86) 0%, rgba(10, 10, 14, 0.38) 100%);
+      border-left: 3px solid var(--accent-gold);
       padding: 10px 16px;
       border-radius: 0 8px 8px 0;
       backdrop-filter: blur(4px);
@@ -170,17 +171,17 @@
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent-ember);
+      color: var(--accent-gold);
       margin-bottom: 4px;
     }
     #objective-text {
       font-size: 0.92rem;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.35;
-      color: var(--text-main);
+      color: #ffffff;
     }
     #objective-sub {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       margin-top: 3px;
     }
@@ -199,28 +200,30 @@
       border: 1px solid var(--hud-border);
       padding: 6px 12px;
       border-radius: 8px;
-      font-size: 0.75rem;
+      font-size: 0.76rem;
+      font-weight: 600;
       letter-spacing: 0.08em;
+      color: #ffffff;
       display: flex;
       align-items: center;
       gap: 8px;
       backdrop-filter: blur(6px);
     }
     #stealth-indicator.hidden-state {
-      color: #7ed99c;
-      border-color: rgba(126, 217, 156, 0.45);
+      color: #8bf0ad;
+      border-color: rgba(139, 240, 173, 0.5);
     }
     #stealth-indicator.danger-state {
-      color: #ff5c5c;
-      border-color: rgba(255, 92, 92, 0.6);
+      color: #ff5959;
+      border-color: rgba(255, 89, 89, 0.7);
     }
     #pause-btn-hud {
       pointer-events: auto;
       cursor: pointer;
-      color: var(--text-main);
+      color: #ffffff;
       transition: background 0.2s;
     }
-    #pause-btn-hud:hover { background: rgba(201, 166, 107, 0.2); }
+    #pause-btn-hud:hover { background: rgba(255, 46, 46, 0.25); }
 
     #reticle-wrapper {
       position: absolute;
@@ -236,7 +239,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.85);
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
       transition: all 0.15s ease;
     }
@@ -248,18 +251,18 @@
       transform: scale(1.15);
     }
     #interact-prompt {
-      background: rgba(10, 11, 14, 0.88);
+      background: rgba(12, 12, 16, 0.9);
       border: 1px solid var(--hud-border);
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.82rem;
-      font-weight: 500;
-      color: #fff;
+      font-weight: 600;
+      color: #ffffff;
       white-space: nowrap;
       opacity: 0;
       transform: translateY(4px);
       transition: opacity 0.15s ease, transform 0.15s ease;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.65);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.75);
     }
     #interact-prompt.visible {
       opacity: 1;
@@ -268,7 +271,7 @@
     .key-badge {
       display: inline-block;
       background: var(--accent-gold);
-      color: #0b0b0c;
+      color: #ffffff;
       font-weight: 700;
       font-size: 0.72rem;
       padding: 1px 6px;
@@ -284,6 +287,11 @@
       flex-direction: column;
       gap: 8px;
       min-width: 210px;
+      background: rgba(12, 12, 16, 0.78);
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
     }
     .bar-group {
       display: flex;
@@ -294,14 +302,15 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.7rem;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #f0ece4;
     }
     .bar-track {
       width: 100%;
       height: 6px;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 99px;
       overflow: hidden;
     }
@@ -311,8 +320,8 @@
       border-radius: 99px;
       transition: width 0.15s ease;
     }
-    #health-fill { background: linear-gradient(90deg, #8b1818, #d93838); }
-    #stamina-fill { background: linear-gradient(90deg, #9c7c44, #e5c37a); }
+    #health-fill { background: linear-gradient(90deg, #9c1414, #ff3333); }
+    #stamina-fill { background: linear-gradient(90deg, #7d1010, #e02828); }
     #battery-fill { background: linear-gradient(90deg, #3c7a89, #7be0f7); }
 
     #weapon-panel {
@@ -339,7 +348,7 @@
       color: var(--accent-gold);
     }
     #equipped-hint {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -350,33 +359,34 @@
     .w-slot {
       width: 60px;
       height: 44px;
-      background: rgba(12, 14, 18, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(14, 14, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
-      color: var(--text-muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #e6e0d6;
       position: relative;
       transition: all 0.15s ease;
     }
     .w-slot.has-item {
-      color: var(--text-main);
-      border-color: rgba(201, 166, 107, 0.45);
+      color: #ffffff;
+      border-color: rgba(255, 46, 46, 0.6);
     }
     .w-slot.active {
-      border-color: var(--accent-ember);
-      background: rgba(224, 122, 34, 0.22);
+      border-color: var(--accent-gold);
+      background: rgba(185, 20, 20, 0.38);
       transform: translateY(-2px);
     }
     .w-slot .slot-num {
       position: absolute;
       top: 3px;
       left: 5px;
-      font-size: 0.6rem;
-      opacity: 0.75;
+      font-size: 0.62rem;
+      color: #ff6b6b;
     }
 
     #subtitle-box {
@@ -385,8 +395,8 @@
       left: 50%;
       transform: translateX(-50%);
       max-width: min(720px, 90vw);
-      background: rgba(6, 7, 9, 0.86);
-      border: 1px solid rgba(201, 166, 107, 0.28);
+      background: rgba(10, 10, 14, 0.88);
+      border: 1px solid rgba(255, 46, 46, 0.45);
       padding: 12px 22px;
       border-radius: 10px;
       text-align: center;
@@ -394,11 +404,11 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85);
     }
     #subtitle-box.visible { opacity: 1; }
     #subtitle-speaker {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -406,12 +416,12 @@
       margin-bottom: 4px;
     }
     #subtitle-text {
-      font-size: 0.96rem;
+      font-size: 0.98rem;
       line-height: 1.45;
-      color: #f4f1ea;
+      color: #ffffff;
     }
     #subtitle-sub {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-style: italic;
       color: var(--text-muted);
       margin-top: 3px;
@@ -422,12 +432,13 @@
       top: 84px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(15, 17, 21, 0.92);
+      background: rgba(16, 16, 20, 0.92);
       border: 1px solid var(--accent-gold);
-      color: #f7f3eb;
+      color: #ffffff;
+      font-weight: 600;
       padding: 8px 18px;
       border-radius: 20px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       z-index: 25;
       opacity: 0;
       pointer-events: none;
@@ -438,143 +449,187 @@
     #note-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.84);
+      background: rgba(0, 0, 0, 0.82);
       z-index: 50;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(4px);
     }
     #note-modal.open { display: flex; }
     .parchment {
-      background: linear-gradient(145deg, #272119, #191510);
-      border: 1px solid #6b5638;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), inset 0 0 40px rgba(0,0,0,0.6);
+      background: rgba(28, 22, 20, 0.96);
+      border: 1px solid #b82828;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
       max-width: 540px;
       width: 100%;
       padding: 30px;
       border-radius: 12px;
-      color: #e6dcc8;
+      color: #ffffff;
     }
     .parchment h3 {
       font-family: 'Cinzel', serif;
       color: var(--accent-gold);
       font-size: 1.25rem;
       margin-bottom: 14px;
-      border-bottom: 1px solid rgba(201, 166, 107, 0.25);
+      border-bottom: 1px solid rgba(255, 46, 46, 0.35);
       padding-bottom: 8px;
     }
     .parchment p {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       line-height: 1.7;
       white-space: pre-line;
       margin-bottom: 16px;
+      color: #f5f0e8;
     }
     .parchment .translation {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-style: italic;
-      color: #a69b87;
-      border-top: 1px dashed rgba(255,255,255,0.15);
+      color: #d6cec2;
+      border-top: 1px dashed rgba(255,255,255,0.2);
       padding-top: 10px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #9e1b1b, #691010);
-      border: 1px solid rgba(255, 160, 140, 0.35);
-      color: #fff;
-      padding: 11px 24px;
+      background: linear-gradient(135deg, #b81414, #6e0b0b);
+      border: 1px solid rgba(255, 90, 90, 0.55);
+      color: #ffffff;
+      padding: 12px 26px;
       border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: transform 0.15s ease, filter 0.15s ease;
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.2s ease;
     }
-    .btn-primary:hover { filter: brightness(1.18); transform: translateY(-1px); }
+    .btn-primary:hover {
+      filter: brightness(1.16);
+      transform: translateY(-1px);
+      box-shadow: 0 0 24px rgba(255, 46, 46, 0.55);
+    }
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: var(--text-main);
+      background: rgba(35, 35, 41, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-weight: 600;
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 0.85rem;
       cursor: pointer;
     }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.16); }
+    .btn-secondary:hover { background: rgba(52, 52, 62, 0.95); }
 
     .fullscreen-overlay {
       position: fixed;
       inset: 0;
       z-index: 60;
-      background: radial-gradient(circle at center, rgba(16, 14, 14, 0.88) 0%, rgba(5, 6, 8, 0.98) 100%);
+      background: radial-gradient(circle at center, rgba(12, 10, 12, 0.24) 0%, rgba(4, 5, 7, 0.65) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px 24px;
       text-align: center;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(2px);
+      overflow-y: auto;
     }
     .fullscreen-overlay.hidden { display: none; }
-    .game-logo {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      font-weight: 900;
-      letter-spacing: 0.24em;
-      color: #f4efe6;
-      text-shadow: 0 0 40px rgba(158, 27, 27, 0.72);
-      margin-bottom: 6px;
+
+    .brand-logo-wrap {
+      position: relative;
+      width: min(92vw, 560px);
+      margin: 0 auto 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+  .brand-logo-img {
+  display: block;
+  width: 100%;
+  max-height: 165px;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  filter: contrast(1.22) brightness(1.1) drop-shadow(0 0 18px rgba(225, 18, 18, 0.7));
+}
+    .brand-logo-img:hover {
+      transform: scale(1.02);
+      filter:
+        contrast(1.22)
+        brightness(1.14)
+        drop-shadow(0 0 26px rgba(255, 42, 42, 0.85));
+    }
+    .brand-logo-fallback {
+      display: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(255, 42, 42, 0.85);
+    }
+
     .game-tagline {
       font-size: 0.82rem;
-      letter-spacing: 0.28em;
+      font-weight: 700;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent-ember);
-      margin-bottom: 22px;
+      color: #ff3b3b;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+      margin-bottom: 16px;
     }
+
     .menu-card {
-      background: rgba(14, 16, 20, 0.86);
-      border: 1px solid var(--hud-border);
+      background: rgba(12, 13, 17, 0.62);
+      border: 1px solid rgba(255, 46, 46, 0.45);
       border-radius: 14px;
-      padding: 22px;
-      max-width: 560px;
+      padding: 20px 22px;
+      max-width: 580px;
       width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       text-align: left;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
     }
     .controls-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px 16px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 12px;
+      font-size: 0.82rem;
+      color: #f4efe6;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.16);
     }
-    .controls-grid span strong { color: var(--accent-gold); }
+    .controls-grid span strong {
+      color: #ff4545;
+      font-weight: 700;
+    }
     .quality-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.16);
     }
     .quality-btns { display: flex; gap: 6px; }
     .q-btn {
       padding: 6px 12px;
       border-radius: 6px;
-      font-size: 0.75rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #ffffff;
       cursor: pointer;
     }
     .q-btn.active {
-      background: var(--accent-ember);
-      color: #090909;
-      font-weight: 700;
-      border-color: var(--accent-ember);
+      background: #c91818;
+      color: #ffffff;
+      border-color: #ff4545;
     }
 
     #mobile-controls {
@@ -596,8 +651,8 @@
       width: 112px;
       height: 112px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       pointer-events: auto;
       touch-action: none;
     }
@@ -609,7 +664,7 @@
       height: 42px;
       margin: -21px 0 0 -21px;
       border-radius: 50%;
-      background: rgba(201, 166, 107, 0.6);
+      background: rgba(255, 46, 46, 0.75);
       border: 1px solid #fff;
     }
     #look-zone {
@@ -634,7 +689,7 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: rgba(14, 16, 20, 0.8);
+      background: rgba(14, 16, 20, 0.85);
       border: 1px solid var(--hud-border);
       color: #fff;
       font-size: 0.66rem;
@@ -646,8 +701,8 @@
       cursor: pointer;
       touch-action: manipulation;
     }
-    .m-btn:active { background: var(--accent-ember); color: #000; }
-    .m-btn.atk { border-color: #d93838; background: rgba(139, 24, 24, 0.7); }
+    .m-btn:active { background: #c91818; color: #ffffff; }
+    .m-btn.atk { border-color: #ff3b3b; background: rgba(155, 20, 20, 0.8); }
 
     #fallback-banner {
       position: fixed;
@@ -655,8 +710,9 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 80;
-      background: rgba(140, 24, 24, 0.92);
+      background: rgba(160, 20, 20, 0.95);
       color: #fff;
+      font-weight: 600;
       padding: 8px 16px;
       border-radius: 8px;
       font-size: 0.78rem;
@@ -677,7 +733,7 @@
   <div id="letterbox-top" class="letterbox"></div>
   <div id="letterbox-bottom" class="letterbox"></div>
   <div id="chapter-banner">
-    <div class="sub">KASÚMA • UNANG KABANATA</div>
+    <div class="sub">18+ • MADUGONG BARYO NG SAN ISIDRO</div>
     <h2>CHAPTER 1 — ANG HANDAAN</h2>
     <div class="line"></div>
   </div>
@@ -692,7 +748,7 @@
   <div id="hud">
     <div id="objective-panel">
       <div id="objective-label">MISYON • ANG HANDAAN</div>
-      <div id="objective-text">Maglakad patungo sa baryo at kausapin si Mateo</div>
+      <div id="objective-text">Pumasok sa madugong baryo at hanapin si Mateo</div>
       <div id="objective-sub">Sundan ang maputik na daan patungo sa siga at arko ng pista.</div>
     </div>
 
@@ -700,9 +756,9 @@
       <button id="pause-btn-hud" class="hud-pill">[ESC] PAUSE / MENU</button>
       <div id="stealth-indicator" class="hud-pill">
         <span id="stealth-icon">👁</span>
-        <span id="stealth-text">NAKIKITA</span>
+        <span id="stealth-text">NAKIKITA NG DILIM</span>
       </div>
-      <div id="clue-counter" class="hud-pill">PAHIWATIG: 0 / 3</div>
+      <div id="clue-counter" class="hud-pill">BAKAS NG DUGO: 0 / 3</div>
     </div>
 
     <div id="reticle-wrapper">
@@ -712,11 +768,11 @@
 
     <div id="vitals-panel">
       <div class="bar-group">
-        <div class="bar-header"><span>KALUSUGAN (HP)</span><span id="hp-val">100%</span></div>
+        <div class="bar-header"><span>BUHAY (HP)</span><span id="hp-val">100%</span></div>
         <div class="bar-track"><div id="health-fill" class="bar-fill"></div></div>
       </div>
       <div class="bar-group">
-        <div class="bar-header"><span>LAKAS (STAMINA)</span><span id="stam-val">100%</span></div>
+        <div class="bar-header"><span>HININGA / LAKAS</span><span id="stam-val">100%</span></div>
         <div class="bar-track"><div id="stamina-fill" class="bar-fill"></div></div>
       </div>
       <div class="bar-group">
@@ -727,8 +783,8 @@
 
     <div id="weapon-panel">
       <div id="equipped-info">
-        <div id="equipped-name">WALANG SANDATA</div>
-        <div id="equipped-hint">Maghanap ng sandata sa baryo [1-3]</div>
+        <div id="equipped-name">HUBAD NA KAMAY</div>
+        <div id="equipped-hint">Maghanap ng pang-patay o pang-taboy [1-3]</div>
       </div>
       <div id="weapon-slots">
         <div class="w-slot" id="slot-1"><span class="slot-num">1</span>SULO</div>
@@ -747,13 +803,13 @@
       <button class="m-btn" id="m-swap">PALIT</button>
       <button class="m-btn" id="m-drop">DROP</button>
       <button class="m-btn" id="m-interact">KUNIN</button>
-      <button class="m-btn atk" id="m-attack">HAMPAS</button>
+      <button class="m-btn atk" id="m-attack">TAGA</button>
     </div>
   </div>
 
   <div id="note-modal">
     <div class="parchment">
-      <h3 id="note-title">Liham</h3>
+      <h3 id="note-title">Duguan na Sulat</h3>
       <p id="note-body"></p>
       <div id="note-trans" class="translation"></div>
       <div style="margin-top: 20px; text-align: right;">
@@ -763,12 +819,20 @@
   </div>
 
   <div id="start-screen" class="fullscreen-overlay">
-    <div class="game-logo">KASÚMA</div>
-    <div class="game-tagline">Filipino Folk Survival Horror • Chapter 1: Ang Handaan</div>
+    <div class="brand-logo-wrap">
+      <img
+        src="logokasuma.png"
+        alt="KASÚMA Logo"
+        class="brand-logo-img"
+        onerror="this.style.display='none'; document.getElementById('startLogoFallback').style.display='block';"
+      >
+      <div id="startLogoFallback" class="brand-logo-fallback">KASÚMA</div>
+    </div>
+    <div class="game-tagline">Kabanata I- Ang Pagdalo ni Elias sa imbitasyon ni Mateo </div>
     <div class="menu-card">
-      <p style="font-size: 0.9rem; line-height: 1.55; color: #d5cfc2;">
-        Dumating si <strong>Elias</strong> sa isang liblib na baryo sa gitna ng pista. Ngunit sa likod ng makukulay na banderitas at mainit na handaan, may sinaunang babala ang mga matatanda:
-        <em style="color: var(--accent-ember);">"Huwag na huwag kang kakain ng iniaalok ng hindi mo kilala."</em>
+      <p style="font-size: 0.92rem; line-height: 1.65; color: #ffffff;">
+        Bumalik si <strong>Elias</strong> sa isang isinumpang baryo habang may handaan—pero sa likod ng tugtugan, nagkukubli ang mga halimaw na nagpapanggap na tao. May duguan na babala ang mga matatanda:
+        <em style="color: #ff4545; font-weight: 600;">"Huwag na huwag kang kakain ng iniaalok ng hindi mo kilala... baka laman ng nawawala ang isinubo mo."</em>
       </p>
       <div class="controls-grid">
         <span><strong>WASD</strong> — Maglakad</span>
@@ -779,11 +843,11 @@
         <span><strong>E</strong> — Kunin / Kausapin / Basahin</span>
         <span><strong>1 / 2 / 3</strong> — Palit Sandata</span>
         <span><strong>G</strong> — Bitawan (Drop) Sandata</span>
-        <span><strong>LEFT CLICK</strong> — Hataw / Hiwa</span>
+        <span><strong>LEFT CLICK</strong> — Hataw / Taga</span>
         <span><strong>ESC</strong> — Pause / Settings</span>
       </div>
       <div class="quality-row">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">GRAPHICS QUALITY:</span>
+        <span style="font-size: 0.8rem; font-weight: 600; color: #ffffff;">GRAPHICS QUALITY:</span>
         <div class="quality-btns">
           <button class="q-btn" data-q="low">LOW</button>
           <button class="q-btn active" data-q="medium">MEDIUM</button>
@@ -797,18 +861,26 @@
   </div>
 
   <div id="pause-screen" class="fullscreen-overlay hidden">
-    <div class="game-logo" style="font-size: 2.4rem;">NAKA-PAUSE</div>
-    <div class="game-tagline">KASÚMA — Chapter 1: Ang Handaan</div>
+    <div class="brand-logo-wrap" style="max-width: 340px;">
+      <img
+        src="logokasuma.png"
+        alt="KASÚMA Logo"
+        class="brand-logo-img"
+        onerror="this.style.display='none'; document.getElementById('pauseLogoFallback').style.display='block';"
+      >
+      <div id="pauseLogoFallback" class="brand-logo-fallback" style="font-size: 2.2rem;">NAKA-PAUSE</div>
+    </div>
+    <div class="game-tagline">18+ • KASÚMA — CHAPTER 1: ANG HANDAAN</div>
     <div class="menu-card">
-      <div style="font-size: 0.85rem; color: var(--accent-gold); margin-bottom: 8px;">MGA SANDATA AT GAMIT:</div>
-      <ul style="font-size: 0.82rem; color: var(--text-muted); padding-left: 18px; line-height: 1.6;">
-        <li><strong>Sulo (Torch):</strong> Nagbibigay liwanag at nakakapagpabagal sa nilalang.</li>
-        <li><strong>Buntot Pagi:</strong> Mabilis na latigo na nakakapagpatigil (stagger) sa aswang.</li>
-        <li><strong>Itak / Bolo:</strong> Mabigat na taga; kayang putulin ang baging sa tarangkahan.</li>
-        <li><strong>[G] Drop Weapon:</strong> Bitawan ang hawak na sandata sa lupa upang pulutin muli.</li>
+      <div style="font-size: 0.86rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 8px;">MGA SANDATA AT PANG-SURVIVE:</div>
+      <ul style="font-size: 0.82rem; color: #f0ece4; padding-left: 18px; line-height: 1.65;">
+        <li><strong>Sulo (Torch):</strong> Nagbibigay liwanag at nanununog sa kuko ng aswang sa dilim.</li>
+        <li><strong>Buntot Pagi:</strong> Mabagsik na latigo na sumasakit at nagpapatigil sa halimaw.</li>
+        <li><strong>Itak / Bolo:</strong> Pang-taga at pang-putol sa makakapal na baging sa tarangkahan.</li>
+        <li><strong>[G] Drop Weapon:</strong> Bitawan ang sandata sa putik para pulutin o palitan nang mabilis.</li>
       </ul>
       <div class="quality-row">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">GRAPHICS PRESET:</span>
+        <span style="font-size: 0.8rem; font-weight: 600; color: #ffffff;">GRAPHICS PRESET:</span>
         <div class="quality-btns">
           <button class="q-btn" data-q="low">LOW</button>
           <button class="q-btn active" data-q="medium">MEDIUM</button>
@@ -823,9 +895,9 @@
   </div>
 
   <div id="end-screen" class="fullscreen-overlay hidden">
-    <div id="end-title" class="game-logo" style="font-size: 2.6rem;">NALAGOT ANG HININGA</div>
-    <div id="end-sub" class="game-tagline" style="max-width: 520px; line-height: 1.5; letter-spacing: 0.14em;">
-      Nilamon ka ng dilim sa baryo ng San Isidro.
+    <div id="end-title" class="brand-logo-fallback" style="display:block; font-size: 2.6rem;">NALAGOT ANG HININGA</div>
+    <div id="end-sub" class="game-tagline" style="max-width: 520px; line-height: 1.5; letter-spacing: 0.14em; color: #ffffff;">
+      Pinagpira-piraso ka sa gitna ng madugong pista ng San Isidro.
     </div>
     <button id="end-restart-btn" class="btn-primary" style="margin-top: 14px;">SUBUKAN MULI</button>
   </div>
