@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KASÚMA - ANG HANDAAN</title>
+
+<style>
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(90, 0, 0, 0.16),
+        #000 78%
+    );
+    z-index: -1;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 36px 24px 48px;
+}
+
+.chapter {
+    color: #a30000;
+    letter-spacing: 7px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeIn 1.4s ease forwards;
+}
+
+.logo-wrap {
+    position: relative;
+    width: 75%;
+    max-width: 420px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    opacity: 0;
+    animation:
+        logoAppear 1.5s ease forwards,
+        logoFloat 5s ease-in-out 1.5s infinite;
+}
+
+.game-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 0 5px rgba(180, 0, 0, 0.7))
+        drop-shadow(0 0 12px rgba(120, 0, 0, 0.4));
+    animation: logoGlow 3.2s ease-in-out infinite;
+}
+
+.logo-fallback {
+    display: none;
+    font-size: 42px;
+    letter-spacing: 10px;
+    color: #b80000;
+    text-shadow: 0 0 16px rgba(180, 0, 0, 0.65);
+    padding: 10px 0;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 5px rgba(180, 0, 0, 0.7))
+            drop-shadow(0 0 12px rgba(120, 0, 0, 0.4));
+    }
+    50% {
+        filter:
+            drop-shadow(0 0 9px rgba(255, 0, 0, 0.9))
+            drop-shadow(0 0 20px rgba(180, 0, 0, 0.7));
+    }
+}
+
+.logo-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.16),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: logoShine 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes logoShine {
+    0%, 65% { left: -120%; }
+    85%, 100% { left: 150%; }
+}
+
+@keyframes logoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.subtitle {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #b0b0b0;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeIn 1.6s ease 0.6s forwards;
+}
+
+.story {
+    max-width: 720px;
+    line-height: 1.95;
+    font-size: 16px;
+    color: #c8c8c8;
+    opacity: 0;
+    animation: fadeIn 1.8s ease 1.1s forwards;
+}
+
+.story p {
+    margin-bottom: 13px;
+}
+
+.story .warning {
+    color: #b30000;
+    font-style: italic;
+    margin-top: 20px;
+    text-shadow: 0 0 8px rgba(150, 0, 0, 0.5);
+}
+
+.buttons {
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 2s forwards;
+}
+
+button {
+    min-width: 230px;
+    padding: 14px 25px;
+    background: transparent;
+    border: 1px solid #760000;
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s, box-shadow 0.25s, color 0.25s;
+}
+
+button:hover,
+button:focus-visible {
+    background: #850000;
+    box-shadow: 0 0 20px rgba(133, 0, 0, 0.8);
+    outline: none;
+}
+
+.back {
+    border-color: transparent;
+    color: #888;
+}
+
+.back:hover,
+.back:focus-visible {
+    background: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+.date {
+    margin-top: 36px;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 3px;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 26px 18px 36px;
+    }
+
+    .chapter {
+        font-size: 11px;
+        letter-spacing: 5px;
+        margin-bottom: 10px;
+    }
+
+    .logo-wrap {
+        width: 85%;
+        max-width: 300px;
+    }
+
+    .logo-fallback {
+        font-size: 30px;
+        letter-spacing: 6px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 22px;
+    }
+
+    .story {
+        font-size: 13.5px;
+        line-height: 1.8;
+    }
+
+    .story p {
+        margin-bottom: 11px;
+    }
+
+    button {
+        min-width: 210px;
+        padding: 12px 20px;
+        font-size: 11px;
+    }
+
+    .date {
+        margin-top: 28px;
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chapter,
+    .logo-wrap,
+    .game-logo,
+    .logo-wrap::after,
+    .subtitle,
+    .story,
+    .buttons {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<main class="container">
+
+    <div class="chapter">KABANATA I</div>
+
+    <div class="logo-wrap">
+        <img
+            src="logokasuma.png"
+            alt="KASÚMA Logo"
+            class="game-logo"
+            onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';"
+        >
+        <div id="logoFallback" class="logo-fallback">KASÚMA</div>
+    </div>
+
+    <div class="subtitle">ANG HANDAAN</div>
+
+    <div class="story">
+        <p>
+            It was 1998. The small village was alive with celebration.
+            Colorful decorations filled the streets as families gathered
+            for the annual town fiesta.
+        </p>
+
+        <p>
+            Elias had returned home just in time for the celebration.
+            The smell of freshly prepared food filled the air,
+            and laughter echoed throughout the village.
+        </p>
+
+        <p>
+            But beneath the music and festivities, something felt wrong.
+            A few villagers refused to eat the food being served.
+            Others whispered about strange incidents that had happened
+            during previous celebrations.
+        </p>
+
+        <p>
+            An old woman quietly warned Elias about a local legend—a mysterious
+            creature called the Yanggaw, said to hide among ordinary people.
+        </p>
+
+        <p>
+            Before leaving, she gave him one final warning:
+            never accept food from someone you do not trust.
+        </p>
+
+        <p class="warning">
+            "Sa piyestahan, hindi lahat ng handa ay pagkain, kung minsan ay may nakatago.
+            Mag-ingat ka sa pagkaing hindi mo kilala ang pinagmulan, at baka maging isa ka sa kanila."
+        </p>
+    </div>
+
+    <div class="buttons">
+        <button id="continueBtn" type="button">ANG SIMULA</button>
+        <button class="back" id="backBtn" type="button">BALIK SA MENU</button>
+    </div>
+
+    <div class="date">PHILIPPINES — 1998</div>
+
+</main>
+
+<script>
+const continueBtn = document.getElementById("continueBtn");
+const backBtn = document.getElementById("backBtn");
+
+continueBtn.addEventListener("click", () => {
+    window.location.href = "pro-type.html";
+});
+
+backBtn.addEventListener("click", () => { 
+    window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>
